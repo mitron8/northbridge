@@ -1,72 +1,86 @@
 "use client"
 import React from "react"
+import { motion } from "framer-motion"
 
-const Destinations = () => {
-
-   const data = [
+const data = [
     {
-        name: "UK",
-        desc: "Step into a legacy of excellence where centuries-old universities meet modern innovation. Studying in the UK isn’t just about earning a degree—it’s about experiencing a culture that has shaped thinkers, leaders, and creators for generations. Walk through historic campuses, engage with diverse minds from across the world, and build a future that carries global recognition and prestige.",
-        image: "https://images.unsplash.com/photo-1505761671935-60b3a7427bad"
-    },
-    {
-        name: "USA",
-        desc: "Chase limitless possibilities in a country where ambition meets opportunity. The USA offers more than education—it offers freedom to explore, innovate, and redefine your path. With world-class universities, flexible learning, and a culture that celebrates individuality, you don’t just study here—you discover who you truly are and what you’re capable of becoming.",
-        image: "https://www.usnews.com/object/image/0000016f-8c62-d408-a9ef-9ffe94a60000/200115bcusaprofile-editorial.usa.profile.jpg"
-    },
-    {
-        name: "Canada",
-        desc: "Find the perfect balance between quality education and a peaceful lifestyle. Canada welcomes you with open arms, offering a safe, inclusive environment where your dreams can grow without limits. Surrounded by breathtaking landscapes and supportive communities, your journey here becomes not just successful—but meaningful and fulfilling.",
-        image: "https://img.freepik.com/premium-photo/national-flag-canada-with-mountain-forest-jasper-national-park-summer-landscape-lac-beauver_363815-4351.jpg"
-    },
-    {
+        flag:"/flags/german.png",
         name: "Germany",
-        desc: "Build your future where innovation meets precision. Germany stands as a powerhouse of technology and research, offering world-class education with minimal tuition costs. Here, you don’t just learn theories—you gain real-world skills that prepare you to lead in global industries, all while experiencing a culture rooted in discipline and excellence.",
+        desc: "Low-cost, world-class public universities",
         image: "https://images.unsplash.com/photo-1528728329032-2972f65dfb3f"
     },
-    {
-        name: "Australia",
-        desc: "Experience education in a land where opportunity meets lifestyle. Australia offers top-ranked universities combined with a vibrant, welcoming environment that makes every day feel inspiring. From sunny beaches to dynamic cities, your academic journey here is enriched with experiences that shape both your career and your life.",
-        image: "https://kashmirobserver.net/wp-content/uploads/2025/12/australia.jpg"
+    {   flag:"/flags/uk.png",
+        name: "United Kingdom",
+        desc: "1-year master’s & global recognition",
+        image: "https://images.unsplash.com/photo-1505761671935-60b3a7427bad"
+    },
+    {   flag:"/flags/usa.png",
+        name: "USA",
+        desc: "Flexible education & global exposure",
+        image: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29"
     }
 ]
 
+const Destinations = () => {
     return (
-        <div className="relative">
+        <section className="px-6 md:px-16 py-20 bg-gray-100">
 
-            {data.map((item, i) => (
-                <div
-                    key={i}
-                    className="sticky top-0 h-screen flex items-center justify-center"
-                >
-                    <div
-                        className="w-full h-full flex flex-col items-center justify-center text-white relative"
-                        style={{
-                            backgroundImage: `url(${item.image})`,
-                            backgroundSize: "cover",
-                            backgroundPosition: "center"
-                        }}
-                    >
-
-                        {/* Overlay */}
-                        <div className="absolute inset-0 bg-black/60"></div>
-
-                        {/* Content */}
-                        <div className="relative z-10 text-center px-6 max-w-2xl">
-                            <h2 className="text-4xl md:text-6xl font-bold">
-                                {item.name}
-                            </h2>
-
-                            <p className="mt-4 text-xs md:text-sm opacity-80">
-                                {item.desc}
-                            </p>
-                        </div>
-
-                    </div>
+            <div className="flex justify-between items-center mb-10">
+                <div>
+                    <p className="text-sm tracking-widest text-gray-500">
+                        STUDY DESTINATIONS
+                    </p>
+                    <h2 className="text-3xl md:text-5xl font-bold text-blue-900 max-w-xl">
+                        Explore top destinations for international students.
+                    </h2>
                 </div>
-            ))}
 
-        </div>
+                <button className="hidden md:block text-blue-800 font-medium hover:underline">
+                    View all →
+                </button>
+            </div>
+
+            <div
+                className="relative"
+                style={{ height: `${data.length * 100}vh` }}
+            >
+
+                {data.map((item, i) => (
+                    <div
+                        key={i}
+                        className="sticky top-24 h-[80vh] flex items-center justify-center"
+                    >
+                        <motion.div
+                            initial={{ scale: 0.95, opacity: 0.7 }}
+                            whileInView={{ scale: 1, opacity: 1 }}
+                            transition={{ duration: 0.5 }}
+                            className="w-[80%] h-[80vh] rounded-3xl overflow-hidden relative"
+                            style={{
+                                backgroundImage: `url(${item.image})`,
+                                backgroundSize: "cover",
+                                backgroundPosition: "center"
+                            }}
+                        >
+                            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent"></div>
+                            <div className="inline-flex items-center px-4 py-1.5 mt-4 mx-2 bg-white/80 backdrop-blur-md text-blue-900 rounded-full shadow-sm">
+                                <p className="text-sm font-semibold tracking-wide flex gap-2">
+                                  <img className="h-4 " src={item.flag}/>  {item.name}
+                                </p>
+                            </div>
+
+                            <div className="absolute bottom-6 left-6 text-white max-w-md">
+                                <h3 className="text-3xl font-semibold">{item.name}</h3>
+                                <p className="text-sm opacity-80 mt-2">{item.desc}</p>
+                            </div>
+                        </motion.div>
+                    </div>
+                ))}
+
+                <div className="h-[100vh]" />
+
+            </div>
+
+        </section>
     )
 }
 
