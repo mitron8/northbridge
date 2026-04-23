@@ -32,7 +32,7 @@ const Hero = () => {
         <div className='flex gap-6 items-center flex-wrap'>
           <button className="
             shadow-sm shadow-blue-700
-            mt-6 hidden md:block
+            mt-6  md:block
             px-5 py-2
             bg-blue-800 text-white
             rounded-lg
